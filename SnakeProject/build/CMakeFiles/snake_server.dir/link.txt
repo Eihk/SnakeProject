@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/snake_server.dir/server.cpp.o  -o snake_server  -lpthread -lzmq -lyaml-cpp 

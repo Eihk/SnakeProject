@@ -1,7 +1,0 @@
-/home/ecn/Desktop/newSnake/build/CMakeFiles/install/strip.dir
-/home/ecn/Desktop/newSnake/build/CMakeFiles/install/local.dir
-/home/ecn/Desktop/newSnake/build/CMakeFiles/install.dir
-/home/ecn/Desktop/newSnake/build/CMakeFiles/list_install_components.dir
-/home/ecn/Desktop/newSnake/build/CMakeFiles/rebuild_cache.dir
-/home/ecn/Desktop/newSnake/build/CMakeFiles/edit_cache.dir
-/home/ecn/Desktop/newSnake/build/CMakeFiles/snake_server.dir
