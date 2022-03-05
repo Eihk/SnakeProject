@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="snake_server"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="snake_server">
+				<Option output="/home/ecn/Desktop/newSnake/build/snake_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DDUELS_BIN_PATH=&quot;/opt/duels/bin&quot;"/>
+					<Add option="-DGAME_SOURCE_DIR=&quot;/home/ecn/Desktop/newSnake&quot;"/>
+					<Add option="-DDUELS_SERVER"/>
+					<Add directory="/home/ecn/Desktop/newSnake/include"/>
+					<Add directory="/opt/duels/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 snake_server"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="snake_server/fast">
+				<Option output="/home/ecn/Desktop/newSnake/build/snake_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ecn/Desktop/newSnake/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DDUELS_BIN_PATH=&quot;/opt/duels/bin&quot;"/>
+					<Add option="-DGAME_SOURCE_DIR=&quot;/home/ecn/Desktop/newSnake&quot;"/>
+					<Add option="-DDUELS_SERVER"/>
+					<Add directory="/home/ecn/Desktop/newSnake/include"/>
+					<Add directory="/opt/duels/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 snake_server/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ecn/Desktop/newSnake/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/ecn/Desktop/newSnake/server.cpp">
+			<Option target="snake_server"/>
+		</Unit>
+		<Unit filename="/home/ecn/Desktop/newSnake/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
