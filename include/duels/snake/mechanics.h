@@ -37,15 +37,16 @@ public:
     // should return who has just won, if any. May also compute display
     Result buildPlayerFeedbacks(Feedback &feedback1, Feedback &feedback2); // Borders correspond to the width and the lenght of the game's window
 
+    void buildDisplayInformation();
+    void randomPosition(Snake &snake);
     void randomPositionGenerator();
     void newApple(std::vector<Position> &apples);
     void turnLeft(Snake &snake);
     void turnRight(Snake &snake);
     void moveForward(Snake &snake);
-    bool eatApple(Snake &snake, std::vector<Position> &apples);
-    void MovementHead(Snake &snake);
-    void MovementBody(Snake &snake);
-    void buildDisplayInformation();
+    void eatApple(Snake &snake, std::vector<Position> &apples);
+    void SnakeMovement(Snake &snake);
+
 
 
 private:

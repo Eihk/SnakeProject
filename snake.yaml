@@ -1,6 +1,6 @@
-orientimeout: 100 #ms
-refresh: 15 #ms
-server_timeout: 15000
+orientimeout: 200 #ms
+refresh: 10 #ms
+server_timeout: 500
 
 structs:
     Orientation : [LEFT, UP, RIGHT, DOWN]

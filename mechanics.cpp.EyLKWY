@@ -96,7 +96,6 @@ void SnakeMechanics::turnLeft(Snake &snake)
     case Orientation::DOWN : snake.head.orientation = Orientation::RIGHT; break;
     case Orientation::RIGHT : snake.head.orientation = Orientation::UP; break;
     }
-    moveForward(snake);
 }
 
 void SnakeMechanics::turnRight(Snake &snake)
@@ -107,7 +106,6 @@ void SnakeMechanics::turnRight(Snake &snake)
     case Orientation::DOWN : snake.head.orientation = Orientation::LEFT; break;
     case Orientation::LEFT : snake.head.orientation = Orientation::UP; break;
     }
-    moveForward(snake);
 }
 
 void SnakeMechanics::moveForward(Snake &snake)
@@ -171,8 +169,8 @@ Result SnakeMechanics::buildPlayerFeedbacks(Feedback &feedback1, Feedback &feedb
     else if ((collideBorder(feedback1.me, width, height) || collideSnake({feedback1.me.x, feedback1.me.y}, feedback1.myBody, feedback1.opponentBody))
               && !(collideBorder(feedback1.opponent, width, height) || collideSnake({feedback1.opponent.x, feedback1.opponent.y}, feedback1.opponentBody, feedback1.myBody)))
     {return Result::P2_WINS;}
-    else if (!(collideBorder(feedback1.me, width, height) || collideSnake({feedback1.me.x, feedback1.me.y}, feedback1.myBody, feedback1.opponentBody))
-             && (collideBorder(feedback1.opponent, width, height) || collideSnake({feedback1.opponent.x, feedback1.opponent.y}, feedback1.opponentBody, feedback1.myBody)))
+    else if ((collideBorder(feedback2.me, width, height) || collideSnake({feedback2.me.x, feedback2.me.y}, feedback2.myBody, feedback2.opponentBody))
+             && !(collideBorder(feedback2.opponent, width, height) || collideSnake({feedback2.opponent.x, feedback2.opponent.y}, feedback2.opponentBody, feedback2.myBody)))
     {return Result::P1_WINS;}
 
 //TODO

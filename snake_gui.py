@@ -20,8 +20,8 @@ def load_image(filename):
 
 blockImage = load_image("block.png")
 appleImage = load_image("apple.png")
-meHeadImage =[load_image('player1_head_{}.png'.format(i)) for i in range(4)]
-opponentHeadImage =[load_image('player2_head_{}.png'.format(i)) for i in range(4)]
+meHeadImage =[load_image("player1_head_0.png"),load_image("player1_head_1.png"),load_image("player1_head_2.png"),load_image("player1_head_3.png")]
+opponentHeadImage =[load_image("player2_head_{}.png".format(i)) for i in range(4)]
 meBodyImage = load_image("player1_body.png")
 opponentBodyImage = load_image("player2_body.png")
 
@@ -42,10 +42,10 @@ screen = pygame.display.set_mode((screenWidth, screenHeight))
 screen.fill((0, 0, 0));
 
 
-for row in range(numberOfRow):
-    for column in range(numberofColumn):
-        if row == 0 or row == numberOfRow-1 or column == 0 or column == numberofColumn-1:
-            screen.blit(blockImage, (row*imageDimension, column*imageDimension))
+#for row in range(numberOfRow):
+#    for column in range(numberofColumn):
+#        if row == 0 or row == numberOfRow-1 or column == 0 or column == numberofColumn-1:
+#            screen.blit(blockImage, (row*imageDimension, column*imageDimension))
 
 pygame.display.set_caption("Snake Game")
 pygame.display.set_icon(meHeadImage[0])
@@ -69,14 +69,7 @@ game.ready()
 ## Utilitary Functions ===================================================================
 
 def blitSnakeHead(headOrientation, xHead, yHead, image):
-    if headOrientation == 0:
-        screen.blit(image[0], (xHead*imageDimension, yHead*imageDimension))
-    elif headOrientation == 1:
-        screen.blit(image[1], (xHead*imageDimension, yHead*imageDimension))
-    elif headOrientation == 2:
-        screen.blit(image[2], (xHead*imageDimension, yHead*imageDimension))
-    else:
-        screen.blit(image[3], (xHead*imageDimension, yHead*imageDimension))
+    screen.blit(image[headOrientation], (xHead*imageDimension, yHead*imageDimension))
 
 def blitOneImage(list, image):
     for element in list:
@@ -89,6 +82,8 @@ while True:
     if game.winner:
         break
     # update display from msg fields
+    screen.fill((0,0,0))
+
     ## Getting the new data
     meHeadOrientation = msg.head1.orientation
     meHead_x = msg.head1.x
@@ -111,8 +106,7 @@ while True:
 
     blitOneImage(apples, appleImage)
 
-
-    pygame.display.flip()
+    pygame.display.update()
 
 
 # update display from game.winner (1 or 2, 3 for draw or -1 if any bug that got you there)

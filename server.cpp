@@ -19,7 +19,7 @@ int main(int argc, char** argv)
     SnakeMechanics mechanics;
     InitDisplay init = mechanics.initGame();
     // inform displays and get players (multithread by default for simultaneous games)
-    const auto [player1, player2] = game_io.initPlayers<SnakeAI>(argc, argv, init, 0, 1); {}
+    const auto [player1, player2] = game_io.initPlayers<SnakeAI>(argc, argv, init, 1, 0); {}
     while(true)
     {
         // extract feedbacks
@@ -35,12 +35,7 @@ int main(int argc, char** argv)
         }
 
         // TODO build display information
-
-        // Each time an apple is ate by a Snake, it will automatically refill one.
-
         game_io.sendDisplay(mechanics.display());
-
-
         // request player actions, exits if any disconnect / crash
         if(!game_io.syncBothPlayers())
             break;

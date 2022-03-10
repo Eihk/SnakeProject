@@ -15,7 +15,7 @@ public:
 private:
   Game(int argc, char** argv, std::string name, int difficulty, std::string ip)
       : duels::Client<Input, Feedback>(
-      argc, argv, 100, 15000, name, difficulty, ip, "snake") {}
+      argc, argv, 100, 500, name, difficulty, ip, "snake") {}
 };
 }
 }

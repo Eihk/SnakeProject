@@ -21,6 +21,11 @@ public:
 
 private:
   int difficulty = 1;
+  Action level0();
+  Action level1();
+  float euclidianDistance(Position Cell1, Position Cell2);
+  std::pair<int, float> closestAppleIndex(std::vector<Position> &apples, Position &headPosition);
+
 };
 }
 }
