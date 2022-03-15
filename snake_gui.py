@@ -106,7 +106,7 @@ while True:
 
     blitOneImage(apples, appleImage)
 
-    pygame.display.update()
+    pygame.display.flip()
 
 
 # update display from game.winner (1 or 2, 3 for draw or -1 if any bug that got you there)

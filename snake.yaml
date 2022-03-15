@@ -1,5 +1,5 @@
 orientimeout: 200 #ms
-refresh: 10 #ms
+refresh: 20 #ms
 server_timeout: 500
 
 structs:

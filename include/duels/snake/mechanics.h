@@ -54,7 +54,7 @@ private:
     int height, width;
     Snake snake1, snake2;
     std::vector<Position> apples;
-
+    bool FindinList(const Position &element, const std::vector<Position> List);
     bool collideSnake(const Position &element, const std::vector<Position> &me, const std::vector<Position> &opponent); // Snake can collide to the opponent's Body or his own Body.
     bool collideBorder(const Pose &head, const int xBorder, const int yBorder);
 };

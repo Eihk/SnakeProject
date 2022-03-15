@@ -19,7 +19,7 @@ int main(int argc, char** argv)
     SnakeMechanics mechanics;
     InitDisplay init = mechanics.initGame();
     // inform displays and get players (multithread by default for simultaneous games)
-    const auto [player1, player2] = game_io.initPlayers<SnakeAI>(argc, argv, init, 1, 0); {}
+    const auto [player1, player2] = game_io.initPlayers<SnakeAI>(argc, argv, init, 2, 2); {}
     while(true)
     {
         // extract feedbacks

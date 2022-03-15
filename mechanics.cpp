@@ -10,7 +10,7 @@ InitDisplay SnakeMechanics::initGame()
     //The dimension of the window.
     msg.height = height = 50;
     msg.width = width = 70;
-    apples = {{25, 25}, {35, 40}, {35, 50}};
+    apples = {};
     while(apples.size() < 3)
     {newApple(apples);}
     // The snakes will always start with their orientation up.
@@ -19,10 +19,10 @@ InitDisplay SnakeMechanics::initGame()
     snake2.head.orientation = initOrientation;
     /* The snakes will always start at the same location.
      * Also, they will start with a boy of 5*/
-    snake1.head.x = 6; snake1.head.y = 2;
-    snake2.head.x = 39; snake2.head.y = 2;
-    snake1.body = {{6,3},{6,4},{6,5},{6,6}};
-    snake2.body = {{39,3},{39,4},{39,5},{39,6}};
+    snake1.head.x = 6; snake1.head.y = 12;
+    snake2.head.x = 39; snake2.head.y = 44;
+    snake1.body = {{6,13},{6,14},{6,15},{6,16}};
+    snake2.body = {{39,45},{39,46},{39,47},{39,48}};
 
     msg.head1 = snake1.head;
     msg.head2 = snake2.head;
@@ -60,9 +60,27 @@ void SnakeMechanics::newApple(std::vector<Position> &apples)
     std::uniform_int_distribution<> row(1, width-1);
     std::uniform_int_distribution<> column(1, height-1);
 
+    std::vector<Position> snakeAreThere = {};
 
+    snakeAreThere.push_back({snake1.head.x,snake1.head.y});
+    for(auto &body: snake1.body){snakeAreThere.push_back(body);}
+    snakeAreThere.push_back({snake2.head.x,snake2.head.y});
+    for(auto &body: snake2.body){snakeAreThere.push_back(body);}
 
-    return apples.push_back({row(engineApple), column(engineApple)});
+    Position newPos = {row(engineApple), column(engineApple)};
+    int numberOfVeritication = 0;
+
+    while(numberOfVeritication != size(snakeAreThere))
+    {
+        if(newPos == snakeAreThere.at(numberOfVeritication))
+        {
+            numberOfVeritication = 0;
+            newPos = {row(engineApple), column(engineApple)};
+        }
+        else{numberOfVeritication++;}
+    }
+
+    return apples.push_back(newPos);
 }
 
 
@@ -153,7 +171,7 @@ Result SnakeMechanics::buildPlayerFeedbacks(Feedback &feedback1, Feedback &feedb
     feedback1.me = snake1.head;
     feedback1.myBody = snake1.body;
     feedback1.opponent = snake2.head;
-    feedback2.opponentBody = snake2.body;
+    feedback1.opponentBody = snake2.body;
     // Player 2
     feedback2.apples = apples;
     feedback2.me = snake2.head;
@@ -161,31 +179,41 @@ Result SnakeMechanics::buildPlayerFeedbacks(Feedback &feedback1, Feedback &feedb
     feedback2.opponent = snake1.head;
     feedback2.opponentBody = snake1.body;
 
-    return Result::NONE; // to be removed later
+    //return Result::NONE; // to be removed later
 
     // It's a draw if both snakes collide to something, borders or other snake's body.
     if (((collideBorder(feedback1.me, width, height) || collideSnake({feedback1.me.x, feedback1.me.y}, feedback1.myBody, feedback1.opponentBody))
          && (collideBorder(feedback1.opponent, width, height) || collideSnake({feedback1.opponent.x, feedback1.opponent.y}, feedback1.opponentBody, feedback1.myBody))))
-    {return Result::DRAW;}
+    {   std::cout<<"Draw ! "<<std::endl;
+        return Result::DRAW;}
     // P1 wins if P2 hits a border and P1 doesn't OR if P1 hits P2's body and P2 doesn't and vice versa
-    else if ((collideBorder(feedback1.me, width, height) || collideSnake({feedback1.me.x, feedback1.me.y}, feedback1.myBody, feedback1.opponentBody))
-              && !(collideBorder(feedback1.opponent, width, height) || collideSnake({feedback1.opponent.x, feedback1.opponent.y}, feedback1.opponentBody, feedback1.myBody)))
-    {return Result::P2_WINS;}
-    else if (!(collideBorder(feedback1.me, width, height) || collideSnake({feedback1.me.x, feedback1.me.y}, feedback1.myBody, feedback1.opponentBody))
-             && (collideBorder(feedback1.opponent, width, height) || collideSnake({feedback1.opponent.x, feedback1.opponent.y}, feedback1.opponentBody, feedback1.myBody)))
-    {return Result::P1_WINS;}
+    else if ((collideBorder(feedback1.me, width, height) || collideSnake({feedback1.me.x, feedback1.me.y}, feedback1.myBody, feedback1.opponentBody)))
+
+    {   std::cout<<"P2 win ! "<<std::endl;
+        return Result::P2_WINS;}
+    else if (collideBorder(feedback1.opponent, width, height) || collideSnake({feedback1.opponent.x, feedback1.opponent.y}, feedback1.opponentBody, feedback1.myBody))
+    {   std::cout<<"P1 win ! "<<std::endl;
+        return Result::P1_WINS;}
 
 //TODO
-        return Result::NONE;}     // game goes on
+     return Result::NONE;
+}     // game goes on
 
 
 
 
 
 /* ========== PRIVATE ==========*/
-
+bool SnakeMechanics::FindinList(const Position &element, const std::vector<Position> List)
+{
+    bool test = false;
+    for (int ind=0; ind<List.size();ind++)
+    {
+        if (List[ind].x==element.x){if(List[ind].y==element.y){test = true;}}}
+    return test;
+}
 bool SnakeMechanics::collideSnake(const Position &element, const std::vector<Position> &me, const std::vector<Position> &opponent) // me or the oppoent doesn't matter, need to change the name.
-{return((std::find(me.begin(), me.end(), element) != me.end()) || (std::find(opponent.begin(), opponent.end(), element) != opponent.end()));}
+{return((FindinList(element, me)) || (FindinList(element, opponent)));}
 
 bool SnakeMechanics::collideBorder(const Pose &head, const int xBorder, const int yBorder)
-{return (head.x == (0 || xBorder) || head.y == (0 || yBorder));}
+{return (head.x == -1) || (head.x== xBorder) || (head.y == -1) || (head.y == yBorder);}
