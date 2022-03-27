@@ -24,6 +24,9 @@ meHeadImage =[load_image("player1_head_0.png"),load_image("player1_head_1.png"),
 opponentHeadImage =[load_image("player2_head_{}.png".format(i)) for i in range(4)]
 meBodyImage = load_image("player1_body.png")
 opponentBodyImage = load_image("player2_body.png")
+p1_wins = load_image("p1_wins.png")
+p2_wins = load_image("p2_wins.png")
+draw = load_image("draw.png")
 
 
 ## Initialisation of the window  =========================================================
@@ -108,12 +111,19 @@ while True:
 
     pygame.display.flip()
 
-
 # update display from game.winner (1 or 2, 3 for draw or -1 if any bug that got you there)
 # if winner is 1 or 2 you can use game.winner_name(init_msg) to get their name
 
+if game.winner == 1:
+    screen.blit(p1_wins, (0,0))
+elif game.winner == 2:
+    screen.blit(p1_wins, (0,0))
+else:
+    screen.blit(draw, (0,0))
+
 pygame.display.flip()
 
+pygame.time.wait(3000)
 pygame.quit()
 
 

@@ -8,27 +8,95 @@ InitDisplay SnakeMechanics::initGame()
     InitDisplay msg;
     // Here are the parameters of the grid and the game state.
     //The dimension of the window.
+    // 1120*800
     msg.height = height = 50;
     msg.width = width = 70;
     apples = {};
     while(apples.size() < 3)
     {newApple(apples);}
-    // The snakes will always start with their orientation up.
-    Orientation initOrientation = Orientation::UP;
-    snake1.head.orientation = initOrientation;
-    snake2.head.orientation = initOrientation;
-    /* The snakes will always start at the same location.
-     * Also, they will start with a boy of 5*/
-    snake1.head.x = 6; snake1.head.y = 12;
-    snake2.head.x = 39; snake2.head.y = 44;
-    snake1.body = {{6,13},{6,14},{6,15},{6,16}};
-    snake2.body = {{39,45},{39,46},{39,47},{39,48}};
+    Pose SnakeHead;
+    std::vector<Position> SnakeBody = {};
+    InitSnake(SnakeHead,SnakeBody);
+    snake1.head=SnakeHead; snake1.body=SnakeBody;
+    SnakeBody={};
+    InitSnake(SnakeHead,SnakeBody);
+    snake2.head=SnakeHead; snake2.body=SnakeBody;
+
 
     msg.head1 = snake1.head;
     msg.head2 = snake2.head;
     msg.body1 = snake1.body;
     msg.body2 = snake2.body;
     return msg;
+}
+
+bool SnakeMechanics::PosPossible(const Position PosToTest,const Pose SnakeHead,const std::vector<Position> snakeBody)
+{
+    bool test = true;
+    if (PosToTest.x < 0 || PosToTest.x >= width || PosToTest.y<0 || PosToTest.y >= height)
+    {test=false;}
+    if ((PosToTest.x==SnakeHead.x && PosToTest.y==SnakeHead.y)||FindinList(PosToTest,snakeBody))
+    {test=false;}
+    if ((PosToTest.x==snake1.head.x && PosToTest.y==snake1.head.y)||FindinList(PosToTest,snake1.body))
+    {test=false;}
+    return test;
+}
+
+void SnakeMechanics::InitSnake(Pose &snakeHead , std::vector<Position> &snakeBody)
+{   static std::default_random_engine EngineSnakeInit;
+    std::uniform_int_distribution<> orientation(0, 3);
+
+    int snakeSizeIni=5;    //size of the snakes (head + body)
+    int xmin,xmax,ymin,ymax,dx,dy;
+    std::vector<Position> possibility;
+    Position currentPart;
+
+    int initOrientation = orientation(EngineSnakeInit);
+    switch(initOrientation){
+        case 0: snakeHead.orientation=Orientation::UP; xmin=ymin=0;xmax=width-1; ymax = height-2; dx=0;dy=1;
+        case 1: snakeHead.orientation=Orientation::RIGHT; xmin=1;ymin=0;xmax=width-1; ymax = height-1; dx=-1;dy=0;
+        case 2: snakeHead.orientation=Orientation::DOWN; xmin=0;ymin=1;xmax=width-1; ymax = height-1; dx=0;dy=-1;
+        case 3: snakeHead.orientation=Orientation::LEFT; xmin=ymin=0;xmax=width-2; ymax = height-1; dx=1;dy=0;
+    }
+
+    std::uniform_int_distribution<> row(xmin, xmax);
+    std::uniform_int_distribution<> column(ymin,ymax);
+    snakeHead.x=row(EngineSnakeInit);
+    snakeHead.y=column(EngineSnakeInit);
+
+
+    while (FindinList({snakeHead.x,snakeHead.y},snake1.body) || (snakeHead.x==snake1.head.x && snakeHead.y==snake1.head.y) ||           //Check if the head isn't on the first snake
+           FindinList({snakeHead.x+dx,snakeHead.y+dy},snake1.body) || (snakeHead.x+dx==snake1.head.x && snakeHead.y+dy==snake1.head.y)) //Chech if the first element of the body isn't on the first snake
+    {
+        snakeHead.x=row(EngineSnakeInit);
+        snakeHead.y=column(EngineSnakeInit);
+
+    }
+
+    currentPart={snakeHead.x+dx,snakeHead.y+dy};
+    snakeBody.push_back(currentPart);
+
+
+    while (snakeBody.size()<(snakeSizeIni-1))
+    {
+        possibility={};
+        if (PosPossible({currentPart.x+1,currentPart.y},snakeHead, snakeBody))  {possibility.push_back({currentPart.x+1,currentPart.y});}
+        if (PosPossible({currentPart.x-1,currentPart.y},snakeHead, snakeBody))  {possibility.push_back({currentPart.x-1,currentPart.y});}
+        if (PosPossible({currentPart.x,currentPart.y+1},snakeHead, snakeBody))  {possibility.push_back({currentPart.x,currentPart.y+1});}
+        if (PosPossible({currentPart.x,currentPart.y-1},snakeHead, snakeBody))  {possibility.push_back({currentPart.x,currentPart.y-1});}
+
+        if (possibility.size()==0)          // No possibility of continuing the placement of the snake, so we try all again
+        {
+            snakeBody={};
+            InitSnake(snakeHead,snakeBody);
+        }
+        else {
+            std::uniform_int_distribution<> ind(0,possibility.size()-1);
+            int indice = ind(EngineSnakeInit);
+            currentPart=possibility.at(indice);
+            snakeBody.push_back(currentPart);
+        }
+    }
 }
 
 void SnakeMechanics::buildDisplayInformation()

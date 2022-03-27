@@ -47,6 +47,9 @@ public:
     void eatApple(Snake &snake, std::vector<Position> &apples);
     void SnakeMovement(Snake &snake);
 
+    bool PosPossible(const Position PosToTest,const Pose SnakeHead,const std::vector<Position> snakeBody);
+    void InitSnake(Pose &snakeHead , std::vector<Position> &snakeBody);
+
 
 
 private:
